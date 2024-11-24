@@ -22,7 +22,7 @@ The scraper uses Selenium to load the page, render any JavaScript, and extract t
 
 - **Launch Browser**: The script opens a Chrome browser window (or another browser) using Selenium’s WebDriver.
 - **Navigate to Profile**: For each user in the input list, the bot navigates to their Twitter profile.
-- **Extract Data**: It uses Selenium and BeautifulSoup to extract the following details from the profile:
+- **Extract Data**: It uses Selenium to extract the following details from the profile:
     - **Bio**: The description in the user’s bio section.
     - **Followers Count**: The number of followers listed on the profile.
     - **Following Count**: The number of people the user is following.
