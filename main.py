@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -5,6 +6,27 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 import time
 import pandas as pd
+import mysql.connector
+import os
+
+load_dotenv
+
+# Environment variable
+
+
+
+# Establish a connection to the MySQL database
+try:
+    conn = mysql.connector.connect(
+    host='localhost',       
+    user='root',        
+    password=os.getenv("my_Pass"),
+    database='twitter_Database'
+)
+    if conn.is_connected():
+        print("Successfully connected to MySQL database")
+except Exception as e:
+    print("Not connected")
 
 # Setup the browser
 service = Service(executable_path="chromedriver.exe")
@@ -75,14 +97,45 @@ def scrape_User_profile(user_handle):
     # Print the collected data
     print(df)
 
-    # Save the data to a CSV file
-    df.to_csv('twitter_Data.csv', index=False)
     
+    # Prepare the cursor object
+    cursor = conn.cursor()
+
+    # create a table 
+    try:
+        cursor.execute(
+            "CREATE TABLE twitter_data (Bio VARCHAR(300),"
+            "Followers VARCHAR(300),"
+            "Following VARCHAR(300),"
+            "Location VARCHAR(300),"
+            "Website VARCHAR(300))"
+        )
+    except Exception as e:
+        print("Fail to create or already exist")
+
+    # Convert DataFrame to list of tuples
+    data_tuples = [tuple(x) for x in df.to_records(index=False)]
+
+    # Prepare insert query
+    insert_query = "INSERT INTO twitter_data (Bio, Followers, Following, Location, Website ) VALUES (%s, %s, %s, %s, %s)"
+
+    # Insert data into the table
+    cursor.executemany(insert_query, data_tuples)
+
+    # Commit the transaction
+    conn.commit()
+
+
+    # Close cursor and connection
+    cursor.close()
+    conn.close()
+
+  
 # Main function
 if __name__ == "__main__":
     # Login credentials
-    twitter_Username = "testsubjec11196"
-    twitter_Password = "Abcd@1234"
+    twitter_Username = os.getenv("twitter_User_key")
+    twitter_Password = os.getenv("twitter_Password_key")
     
     # Log in to Twitter
     login_To_twitter(twitter_Username, twitter_Password)
@@ -92,3 +145,4 @@ if __name__ == "__main__":
 
     # Close the browser
     browser.quit()
+

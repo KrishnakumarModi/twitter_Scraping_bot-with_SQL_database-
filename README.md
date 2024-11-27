@@ -1,13 +1,13 @@
-# twitter_Scraping_bot
+# twitter_Scraping_bot(with_SQL_database)
 
 ## Overview
 
-This project is a web scraping application built in Python that extracts data from twitter. The primary goal is to get data from website and export it into csv file which contain bio, followers, following, location and website.
+This project is a web scraping application built in Python that extracts data from twitter. The primary goal is to get data from website and export it into mySQL database which contain bio, followers, following, location and website.
 
 ## Features
 
 - **Data Extraction**: Efficiently scrape data from twitter.
-- **Data Storage**: Stores the extracted data in CSV format.
+- **Data Storage**: Stores the extracted data in mySQL database.
 - **Proxy Support**:proxy is not added.
 
 ## Requirements
@@ -15,6 +15,7 @@ This project is a web scraping application built in Python that extracts data fr
 - Python 3.12
 - `selenium` library 
 - `pandas` library
+- `mySQL` database
 
 ## Working logic
 
