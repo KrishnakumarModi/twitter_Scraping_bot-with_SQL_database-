@@ -1,5 +1,6 @@
 Python 3.7+: This bot is built using Python 3.7 and above.
 Libraries:
 selenium: A browser automation tool for scraping dynamic content.
-pandas: To export the scraped data into a CSV file.
+pandas: To export the scraped data into a dataframe.
 chromedriver: For controlling Chrome with Selenium (or use other browser drivers).
+MYSQL: For storing the scraped data into database.

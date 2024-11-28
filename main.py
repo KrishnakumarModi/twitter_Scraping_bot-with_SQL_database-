@@ -1,4 +1,3 @@
-from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -7,12 +6,14 @@ from selenium.webdriver.common.keys import Keys
 import time
 import pandas as pd
 import mysql.connector
+from dotenv import load_dotenv
 import os
-
-load_dotenv
+load_dotenv()
 
 # Environment variable
-
+my_Pass=str(os.getenv("my_Pass"))        
+twitter_User_key=str(os.getenv("twitter_User_key"))
+twitter_Password_key=str(os.getenv("twitter_Password_key"))
 
 
 # Establish a connection to the MySQL database
@@ -20,7 +21,7 @@ try:
     conn = mysql.connector.connect(
     host='localhost',       
     user='root',        
-    password=os.getenv("my_Pass"),
+    password=my_Pass,
     database='twitter_Database'
 )
     if conn.is_connected():
@@ -134,8 +135,8 @@ def scrape_User_profile(user_handle):
 # Main function
 if __name__ == "__main__":
     # Login credentials
-    twitter_Username = os.getenv("twitter_User_key")
-    twitter_Password = os.getenv("twitter_Password_key")
+    twitter_Username = twitter_User_key
+    twitter_Password = twitter_Password_key
     
     # Log in to Twitter
     login_To_twitter(twitter_Username, twitter_Password)
