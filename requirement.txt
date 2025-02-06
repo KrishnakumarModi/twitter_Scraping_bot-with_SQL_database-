@@ -3,4 +3,4 @@ Libraries:
 selenium: A browser automation tool for scraping dynamic content.
 pandas: To export the scraped data into a dataframe.
 chromedriver: For controlling Chrome with Selenium (or use other browser drivers).
-MYSQL: For storing the scraped data into database
+MYSQL: For storing the scraped data into database.
