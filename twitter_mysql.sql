@@ -13,4 +13,4 @@ CREATE TABLE twitter_data (
 
 select * from twitter_data ;
 
-TRUNCATE TABLE twitter_data;
+
