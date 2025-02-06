@@ -145,5 +145,5 @@ if __name__ == "__main__":
     scrape_User_profile("GTNUK1")  
 
     # Close the browser
-    browser.quit()
+    browser.quit
 
