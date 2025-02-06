@@ -29,4 +29,4 @@ The scraper uses Selenium to load the page, render any JavaScript, and extract t
     - **Following Count**: The number of people the user is following.
     - **Website URL**: If the user has provided a website URL in their profile.
     - **Location**: The location (if provided) in the profile.
-- **Store Data**: It uses Mysql to store data into database
+- **Store Data**: It uses Mysql to store data into database.
